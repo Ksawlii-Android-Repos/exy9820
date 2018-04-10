@@ -10,6 +10,7 @@ extern int susfs_spoof_proc_cmdline(struct seq_file *m);
 
 static int cmdline_proc_show(struct seq_file *m, void *v)
 {
+
 #ifdef CONFIG_KSU_SUSFS_SPOOF_PROC_CMDLINE
 	if (!susfs_spoof_proc_cmdline(m)) {
 		seq_putc(m, '\n');
@@ -17,6 +18,8 @@ static int cmdline_proc_show(struct seq_file *m, void *v)
 	}
 #endif
 	seq_printf(m, "%s\n", saved_command_line);
+	seq_puts(m, saved_command_line);
+	seq_putc(m, '\n');
 	return 0;
 }
 
